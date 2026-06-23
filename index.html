@@ -141,28 +141,27 @@
             }
         }
 
-        // টগল ব্লক/আনব্লক ফাংশন (একই বাটনে দুই কাজ)
-        const blockStatus = { 'device-1': false, 'device-2': false };
+        // একদম নিশ্চিতভাবে কাজ করার জন্য টগল ফাংশন আপডেট
         function toggleBlock(id, name) {
             const card = document.getElementById(id);
             const btn = document.getElementById('btn-' + id);
             
-            if (!blockStatus[id]) {
-                // ব্লক করা হচ্ছে
+            // বাটনের ভেতরের টেক্সট চেক করে সিদ্ধান্ত নেওয়া হচ্ছে
+            if (btn.innerText.trim() === 'ব্লক করুন') {
+                // ব্লক করার লজিক
                 card.style.opacity = '0.3';
                 btn.innerText = 'আনব্লক করুন';
-                btn.className = "bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer";
-                blockStatus[id] = true;
+                btn.style.backgroundColor = '#16a34a'; // সবুজ রঙ
+                btn.style.color = '#ffffff';
             } else {
-                // আনব্লক করা হচ্ছে
+                // আনব্লক করার লজিক
                 card.style.opacity = '1';
                 btn.innerText = 'ব্লক করুন';
-                btn.className = "bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer";
-                blockStatus[id] = false;
+                btn.style.backgroundColor = '#334155'; // আগের স্লেট রঙ
+                btn.style.color = '#f87171'; // লালচে টেক্সট
             }
         }
 
-        // স্পিড কন্ট্রোল আপডেট ফাংশন
         function updateSpeed(id, value) {
             const label = document.getElementById('speed-val-' + id);
             if (value == 25) {
