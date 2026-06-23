@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>টিপি-লিংক রাউটার কন্ট্রোল প্যানেল</title>
-    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex items-center justify-center p-4">
 
-    <!-- ১. কানেকশন ও লগইন বক্স (সদর দরজা) -->
     <div id="login-card" class="bg-slate-800 p-6 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-md transition-all duration-500">
         <h2 class="text-2xl font-bold text-center text-blue-400 mb-2">ডোমেন ও ডিভাইস কন্ট্রোল প্যানেল</h2>
         <p class="text-xs text-slate-400 text-center mb-6">আপনার টিপি-লিংক ক্লাউড আইডি দিয়ে নিরাপদ কানেকশন তৈরি করুন।</p>
@@ -41,12 +38,10 @@
         </div>
     </div>
 
-    <!-- ২. মূল ড্যাশবোর্ড প্যানেল (লগইন করার পর এটি দেখাবে) -->
     <div id="dashboard-card" class="hidden bg-slate-800 p-6 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-lg transition-all duration-500">
-        <!-- হেডার -->
         <div class="flex justify-between items-center border-b border-slate-700 pb-4 mb-6">
             <div>
-                <h2 class="text-xl font-bold text-blue-400"><i class="fa-solid协作 fa-circle-nodes mr-2"></i>Archer C80</h2>
+                <h2 class="text-xl font-bold text-blue-400"><i class="fa-solid fa-circle-nodes mr-2"></i>Archer C80</h2>
                 <p class="text-xs text-green-400 flex items-center gap-1 mt-0.5">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> ক্লাউড সিঙ্কড: অনলাইন
                 </p>
@@ -56,105 +51,124 @@
             </button>
         </div>
 
-        <!-- কুইক কন্ট্রোল (ওয়াইফাই অন/অফ) -->
         <div class="bg-slate-900/50 border border-slate-700 p-4 rounded-xl flex justify-between items-center mb-6">
             <div>
-                <p class="font-medium">প্রধান ওয়াই-ফাই নেটওয়ার্ক</p>
-                <p id="wifi-desc" class="text-xs text-slate-400">স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২৪ GHz / ৫ GHz)</p>
+                <p class="font-medium text-sm">প্রধান ওয়াই-ফাই নেটওয়ার্ক</p>
+                <p id="wifi-desc" class="text-xs text-slate-400">স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২.৪ GHz / ৫ GHz)</p>
             </div>
-            <!-- Toggle Switch -->
             <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" id="wifi-toggle" checked onclick="toggleWifi()" class="sr-only peer">
-                <div class="w-14 h-7 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+                <div class="w-14 h-7 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
             </label>
         </div>
 
-        <!-- স্পিড মিটার মিটার -->
-        <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-700/60 text-center">
-                <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-arrow-down text-green-400 mr-1"></i> ডাউনলোড স্পিড</p>
-                <p class="text-xl font-bold text-slate-200">24.5 <span class="text-xs text-slate-400">Mbps</span></p>
-            </div>
-            <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-700/60 text-center">
-                <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-arrow-up text-blue-400 mr-1"></i> আপলোড স্পিড</p>
-                <p class="text-xl font-bold text-slate-200">12.1 <span class="text-xs text-slate-400">Mbps</span></p>
-            </div>
-        </div>
-
-        <!-- সংযুক্ত ডিভাইসের তালিকা -->
         <div>
-            <h3 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">সংযুক্ত ডিভাইস সমূহ (০২)</h3>
-            <div class="space-y-3">
-                <!-- ডিভাইস ১ -->
-                <div id="device-1" class="flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-700">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg">
-                            <i class="fa-solid fa-laptop"></i>
+            <h3 class="text-xs font-semibold text-slate-400 mb-3 uppercase tracking-wider">সংযুক্ত ডিভাইস ও গতি নিয়ন্ত্রণ (০২)</h3>
+            <div class="space-y-4">
+                
+                <div id="device-1" class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 space-y-3 transition-all duration-300">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Personal Laptop</p>
+                                <p class="text-xs text-slate-500">IP: 192.168.0.105</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium">Personal Laptop</p>
-                            <p class="text-xs text-slate-500">IP: 192.168.0.105</p>
-                        </div>
+                        <button id="btn-device-1" onclick="toggleBlock('device-1', 'Personal Laptop')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
+                            ব্লক করুন
+                        </button>
                     </div>
-                    <button onclick="blockDevice('device-1', 'Personal Laptop')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
-                        ব্লক করুন
-                    </button>
+                    <div class="pt-2 border-t border-slate-800">
+                        <div class="flex justify-between text-xs text-slate-400 mb-1">
+                            <span>গতিসীমা (Speed Limit):</span>
+                            <span id="speed-val-1" class="text-blue-400 font-bold">আনলিমিটেড</span>
+                        </div>
+                        <input type="range" min="1" max="25" value="25" oninput="updateSpeed(1, this.value)" class="w-full h-1.5 bg-slate-750 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                    </div>
                 </div>
 
-                <!-- ডিভাইস ২ -->
-                <div id="device-2" class="flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-700">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 text-lg">
-                            <i class="fa-solid fa-mobile-screen-button"></i>
+                <div id="device-2" class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 space-y-3 transition-all duration-300">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 text-lg">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Galaxy S23 Ultra</p>
+                                <p class="text-xs text-slate-500">IP: 192.168.0.112</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium">Galaxy S23 Ultra</p>
-                            <p class="text-xs text-slate-500">IP: 192.168.0.112</p>
-                        </div>
+                        <button id="btn-device-2" onclick="toggleBlock('device-2', 'Galaxy S23 Ultra')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
+                            ব্লক করুন
+                        </button>
                     </div>
-                    <button onclick="blockDevice('device-2', 'Galaxy S23 Ultra')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
-                        ব্লক করুন
-                    </button>
+                    <div class="pt-2 border-t border-slate-800">
+                        <div class="flex justify-between text-xs text-slate-400 mb-1">
+                            <span>গতিসীমা (Speed Limit):</span>
+                            <span id="speed-val-2" class="text-purple-400 font-bold">আনলিমিটেড</span>
+                        </div>
+                        <input type="range" min="1" max="25" value="25" oninput="updateSpeed(2, this.value)" class="w-full h-1.5 bg-slate-750 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- ইন্টারেক্টিভ জাভাস্ক্রিপ্ট লজিক (ডেমো অ্যাকশন) -->
     <script>
-        // ১. কানেক্ট বাটনে চাপ দিলে ড্যাশবোর্ড দেখানোর ফাংশন
         function connectRouter() {
             document.getElementById('login-card').classList.add('hidden');
             document.getElementById('dashboard-card').classList.remove('hidden');
         }
 
-        // ২. ডিসকানেক্ট ফাংশন
         function logoutRouter() {
             document.getElementById('dashboard-card').classList.add('hidden');
             document.getElementById('login-card').classList.remove('hidden');
         }
 
-        // ৩. ওয়াইফাই অন/অফ ডেমো অ্যালার্ট
         function toggleWifi() {
             const isChecked = document.getElementById('wifi-toggle').checked;
             const desc = document.getElementById('wifi-desc');
             if(isChecked) {
-                desc.innerText = "স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২৪ GHz / ৫ GHz)";
+                desc.innerText = "স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২.৪ GHz / ৫ GHz)";
                 desc.className = "text-xs text-slate-400";
-                alert("ওয়াই-ফাই সিগন্যাল সফলভাবে চালু করা হয়েছে (ডেমো)");
             } else {
                 desc.innerText = "স্ট্যাটাস: নিষ্ক্রিয় / বন্ধ আছে";
                 desc.className = "text-xs text-red-400";
-                alert("সতর্কতা: ওয়াই-ফাই সিগন্যাল বন্ধ করা হয়েছে (ডেমো)");
             }
         }
 
-        // ৪. ডিভাইস ব্লক করার ডেমো অ্যাকশন
-        function blockDevice(id, name) {
-            const confirmation = confirm(`আপনি কি নিশ্চিত যে "${name}" ডিভাইসটি ব্লক করতে চান?`);
-            if(confirmation) {
-                document.getElementById(id).style.opacity = '0.4';
-                alert(`"${name}" ডিভাইসটিকে সাময়িকভাবে ব্লক লিস্টে পাঠানো হয়েছে (ডেমো)`);
+        // টগল ব্লক/আনব্লক ফাংশন (একই বাটনে দুই কাজ)
+        const blockStatus = { 'device-1': false, 'device-2': false };
+        function toggleBlock(id, name) {
+            const card = document.getElementById(id);
+            const btn = document.getElementById('btn-' + id);
+            
+            if (!blockStatus[id]) {
+                // ব্লক করা হচ্ছে
+                card.style.opacity = '0.3';
+                btn.innerText = 'আনব্লক করুন';
+                btn.className = "bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer";
+                blockStatus[id] = true;
+            } else {
+                // আনব্লক করা হচ্ছে
+                card.style.opacity = '1';
+                btn.innerText = 'ব্লক করুন';
+                btn.className = "bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer";
+                blockStatus[id] = false;
+            }
+        }
+
+        // স্পিড কন্ট্রোল আপডেট ফাংশন
+        function updateSpeed(id, value) {
+            const label = document.getElementById('speed-val-' + id);
+            if (value == 25) {
+                label.innerText = "আনলিমিটেড";
+            } else {
+                label.innerText = value + " Mbps";
             }
         }
     </script>
