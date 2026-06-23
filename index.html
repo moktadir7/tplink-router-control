@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্মার্ট ডিভাইস কন্ট্রোল প্যানেল</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        h2 {
+            color: #0078d4;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .btn {
+            background-color: #0078d4;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #005a9e;
+        }
+        .status-card {
+            background-color: #f9f9f9;
+            border-left: 5px solid #28a745;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: left;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>ডোমেন ও ডিভাইস কন্ট্রোল প্যানেল</h2>
+    <p>আপনার টিপি-লিঙ্ক ক্লাউড আইডি দিয়ে নিরাপদ কানেকশন তৈরি করুন।</p>
+    
+    <form id="controlForm" onsubmit="event.preventDefault(); handleConnect();">
+        <div class="form-group">
+            <label for="email">টিপি-লিঙ্ক ক্লাউড ইমেইল:</label>
+            <input type="text" id="email" placeholder="example@gmail.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">ক্লাউড পাসওয়ার্ড:</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="form-group">
+            <label for="device">নিয়ন্ত্রণ করার ডিভাইস নির্বাচন করুন:</label>
+            <select id="device">
+                <option value="router">TP-Link Archer C80 Router</option>
+                <option value="smart-plug">স্মার্ট প্লাগ (Smart Plug)</option>
+                <option value="all">সকল সংযুক্ত ডিভাইস (All Devices)</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn">কানেক্ট ও সিঙ্ক করুন</button>
+    </form>
+
+    <div id="statusReport" class="status-card" style="display: none;">
+        <strong>স্ট্যাটাস:</strong> <span id="statusText" style="color: #28a745;">অনলাইন</span><br>
+        <strong>সংযুক্ত ডিভাইস সংখ্যা:</strong> <span id="deviceCount">১টি ল্যাপটপ, ১টি মোবাইল</span>
+    </div>
+</div>
+
+<script>
+    function handleConnect() {
+        const email = document.getElementById('email').value;
+        alert('আপনার ক্লাউড আইডি: ' + email + '\nসফলভাবে কানেক্ট করার চেষ্টা করা হচ্ছে...');
+        document.getElementById('statusReport').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
+
