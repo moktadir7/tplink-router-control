@@ -3,116 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>স্মার্ট ডিভাইস কন্ট্রোল প্যানেল</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-        }
-        h2 {
-            color: #0078d4;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-        input[type="text"], input[type="password"], select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-        .btn {
-            background-color: #0078d4;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: #005a9e;
-        }
-        .status-card {
-            background-color: #f9f9f9;
-            border-left: 5px solid #28a745;
-            padding: 10px;
-            margin-top: 20px;
-            text-align: left;
-            border-radius: 4px;
-        }
-    </style>
+    <title>টিপি-লিংক রাউটার কন্ট্রোল প্যানেল</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex items-center justify-center p-4">
 
-<div class="container">
-    <h2>ডোমেন ও ডিভাইস কন্ট্রোল প্যানেল</h2>
-    <p>আপনার টিপি-লিঙ্ক ক্লাউড আইডি দিয়ে নিরাপদ কানেকশন তৈরি করুন।</p>
-    
-    <form id="controlForm" onsubmit="event.preventDefault(); handleConnect();">
-        <div class="form-group">
-            <label for="email">টিপি-লিঙ্ক ক্লাউড ইমেইল:</label>
-            <input type="text" id="email" placeholder="example@gmail.com" required>
-        </div>
+    <!-- ১. কানেকশন ও লগইন বক্স (সদর দরজা) -->
+    <div id="login-card" class="bg-slate-800 p-6 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-md transition-all duration-500">
+        <h2 class="text-2xl font-bold text-center text-blue-400 mb-2">ডোমেন ও ডিভাইস কন্ট্রোল প্যানেল</h2>
+        <p class="text-xs text-slate-400 text-center mb-6">আপনার টিপি-লিংক ক্লাউড আইডি দিয়ে নিরাপদ কানেকশন তৈরি করুন।</p>
         
-        <div class="form-group">
-            <label for="password">ক্লাউড পাসওয়ার্ড:</label>
-            <input type="password" id="password" placeholder="••••••••" required>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-1 text-slate-300">টিপি-লিংক ক্লাউড ইমেইল:</label>
+                <input type="email" value="jecak58641@justnapa.com" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-1 text-slate-300">ক্লাউড পাসওয়ার্ড:</label>
+                <input type="password" value="••••" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-1 text-slate-300">নিয়ন্ত্রণ করার ডিভাইস নির্বাচন করুন:</label>
+                <select class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+                    <option>TP-Link Archer C80 Router</option>
+                    <option>TP-Link TL-WR841N</option>
+                </select>
+            </div>
+            
+            <button onclick="connectRouter()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-all shadow-lg active:scale-95 cursor-pointer">
+                কানেক্ট ও সিঙ্ক করুন
+            </button>
         </div>
-
-        <div class="form-group">
-            <label for="device">নিয়ন্ত্রণ করার ডিভাইস নির্বাচন করুন:</label>
-            <select id="device">
-                <option value="router">TP-Link Archer C80 Router</option>
-                <option value="smart-plug">স্মার্ট প্লাগ (Smart Plug)</option>
-                <option value="all">সকল সংযুক্ত ডিভাইস (All Devices)</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn">কানেক্ট ও সিঙ্ক করুন</button>
-    </form>
-
-    <div id="statusReport" class="status-card" style="display: none;">
-        <strong>স্ট্যাটাস:</strong> <span id="statusText" style="color: #28a745;">অনলাইন</span><br>
-        <strong>সংযুক্ত ডিভাইস সংখ্যা:</strong> <span id="deviceCount">১টি ল্যাপটপ, ১টি মোবাইল</span>
     </div>
-</div>
 
-<script>
-    function handleConnect() {
-        const email = document.getElementById('email').value;
-        alert('আপনার ক্লাউড আইডি: ' + email + '\nসফলভাবে কানেক্ট করার চেষ্টা করা হচ্ছে...');
-        document.getElementById('statusReport').style.display = 'block';
-    }
-</script>
+    <!-- ২. মূল ড্যাশবোর্ড প্যানেল (লগইন করার পর এটি দেখাবে) -->
+    <div id="dashboard-card" class="hidden bg-slate-800 p-6 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-lg transition-all duration-500">
+        <!-- হেডার -->
+        <div class="flex justify-between items-center border-b border-slate-700 pb-4 mb-6">
+            <div>
+                <h2 class="text-xl font-bold text-blue-400"><i class="fa-solid协作 fa-circle-nodes mr-2"></i>Archer C80</h2>
+                <p class="text-xs text-green-400 flex items-center gap-1 mt-0.5">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> ক্লাউড সিঙ্কড: অনলাইন
+                </p>
+            </div>
+            <button onclick="logoutRouter()" class="text-xs bg-slate-700 hover:bg-red-600 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition cursor-pointer">
+                ডিসকানেক্ট
+            </button>
+        </div>
 
+        <!-- কুইক কন্ট্রোল (ওয়াইফাই অন/অফ) -->
+        <div class="bg-slate-900/50 border border-slate-700 p-4 rounded-xl flex justify-between items-center mb-6">
+            <div>
+                <p class="font-medium">প্রধান ওয়াই-ফাই নেটওয়ার্ক</p>
+                <p id="wifi-desc" class="text-xs text-slate-400">স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২৪ GHz / ৫ GHz)</p>
+            </div>
+            <!-- Toggle Switch -->
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="wifi-toggle" checked onclick="toggleWifi()" class="sr-only peer">
+                <div class="w-14 h-7 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+        </div>
+
+        <!-- স্পিড মিটার মিটার -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-700/60 text-center">
+                <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-arrow-down text-green-400 mr-1"></i> ডাউনলোড স্পিড</p>
+                <p class="text-xl font-bold text-slate-200">24.5 <span class="text-xs text-slate-400">Mbps</span></p>
+            </div>
+            <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-700/60 text-center">
+                <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-arrow-up text-blue-400 mr-1"></i> আপলোড স্পিড</p>
+                <p class="text-xl font-bold text-slate-200">12.1 <span class="text-xs text-slate-400">Mbps</span></p>
+            </div>
+        </div>
+
+        <!-- সংযুক্ত ডিভাইসের তালিকা -->
+        <div>
+            <h3 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">সংযুক্ত ডিভাইস সমূহ (০২)</h3>
+            <div class="space-y-3">
+                <!-- ডিভাইস ১ -->
+                <div id="device-1" class="flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-700">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg">
+                            <i class="fa-solid fa-laptop"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Personal Laptop</p>
+                            <p class="text-xs text-slate-500">IP: 192.168.0.105</p>
+                        </div>
+                    </div>
+                    <button onclick="blockDevice('device-1', 'Personal Laptop')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
+                        ব্লক করুন
+                    </button>
+                </div>
+
+                <!-- ডিভাইস ২ -->
+                <div id="device-2" class="flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-700">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 text-lg">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Galaxy S23 Ultra</p>
+                            <p class="text-xs text-slate-500">IP: 192.168.0.112</p>
+                        </div>
+                    </div>
+                    <button onclick="blockDevice('device-2', 'Galaxy S23 Ultra')" class="bg-slate-700 hover:bg-red-900/60 text-red-400 text-xs px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">
+                        ব্লক করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ইন্টারেক্টিভ জাভাস্ক্রিপ্ট লজিক (ডেমো অ্যাকশন) -->
+    <script>
+        // ১. কানেক্ট বাটনে চাপ দিলে ড্যাশবোর্ড দেখানোর ফাংশন
+        function connectRouter() {
+            document.getElementById('login-card').classList.add('hidden');
+            document.getElementById('dashboard-card').classList.remove('hidden');
+        }
+
+        // ২. ডিসকানেক্ট ফাংশন
+        function logoutRouter() {
+            document.getElementById('dashboard-card').classList.add('hidden');
+            document.getElementById('login-card').classList.remove('hidden');
+        }
+
+        // ৩. ওয়াইফাই অন/অফ ডেমো অ্যালার্ট
+        function toggleWifi() {
+            const isChecked = document.getElementById('wifi-toggle').checked;
+            const desc = document.getElementById('wifi-desc');
+            if(isChecked) {
+                desc.innerText = "স্ট্যাটাস: সম্প্রচারিত হচ্ছে (২৪ GHz / ৫ GHz)";
+                desc.className = "text-xs text-slate-400";
+                alert("ওয়াই-ফাই সিগন্যাল সফলভাবে চালু করা হয়েছে (ডেমো)");
+            } else {
+                desc.innerText = "স্ট্যাটাস: নিষ্ক্রিয় / বন্ধ আছে";
+                desc.className = "text-xs text-red-400";
+                alert("সতর্কতা: ওয়াই-ফাই সিগন্যাল বন্ধ করা হয়েছে (ডেমো)");
+            }
+        }
+
+        // ৪. ডিভাইস ব্লক করার ডেমো অ্যাকশন
+        function blockDevice(id, name) {
+            const confirmation = confirm(`আপনি কি নিশ্চিত যে "${name}" ডিভাইসটি ব্লক করতে চান?`);
+            if(confirmation) {
+                document.getElementById(id).style.opacity = '0.4';
+                alert(`"${name}" ডিভাইসটিকে সাময়িকভাবে ব্লক লিস্টে পাঠানো হয়েছে (ডেমো)`);
+            }
+        }
+    </script>
 </body>
 </html>
 
